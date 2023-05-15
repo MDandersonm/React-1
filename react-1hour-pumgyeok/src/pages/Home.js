@@ -2,7 +2,7 @@
 
 // //함수형 컴퍼넌트
 import React from "react";
-function Home(){
+const Home= ()=> {
     return <h1>Home화면입니다.</h1>
 }
 
