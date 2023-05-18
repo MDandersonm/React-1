@@ -25,12 +25,12 @@ const Fcc = () => {
   }) : '추가된영화가없습니다';
 
   return (
-    <div>
+    <>
       {/* 함수를 자식컴퍼넌트에 props로 보냄 */}
       <MovieCreateForm addMovieProps={addMovie}/>
       
       {renderMovies}
-    </div>
+    </>
   );
 };
 export default Fcc;
