@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const MovieForm = ({ addMovieProps }) => {
   const [title, setMovieTitle] = useState("");
   const [year, setMovieYear] = useState("");
+
   const resetForm = () => {
     setMovieTitle("");
     setMovieYear("");
@@ -12,6 +13,7 @@ const MovieForm = ({ addMovieProps }) => {
     e.preventDefault();
     // setMovies([...movies, { title: title, year: year }]);
     addMovieProps({
+      id: Date.now(),
       title: title,
       year: year,
     });
