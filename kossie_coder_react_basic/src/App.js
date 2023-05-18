@@ -11,7 +11,7 @@ import Map2 from "./pages/08_MapComponent";
 import ListCreate from "./pages/09_listCreate";
 import ToParent from "./pages/10_ToParent";
 import Navbar from "./components/Navbar";
-import Users from "./components/Users";
+import Users from "./pages/11_Users";
 
 function App() {
   return (
@@ -23,10 +23,10 @@ function App() {
         <Link to="/component">Component</Link>|{" "}
         <Link to="/condition">Condition</Link>| <Link to="/map">Map</Link>|{" "}
         <Link to="/map2">Map2</Link>| <Link to="/listCreate">ListCreate</Link>|{" "}
-        <Link to="/toParent">ToParent</Link>|{" "}
-        <Link to="/users">Users</Link>|{" "}
+        <Link to="/toParent">ToParent</Link>| <Link to="/users">Users</Link>|{" "}
       </nav>
-      <Routes>
+      <div className="container">
+        <Routes>
           <Route path="/event" element={<Event />} />
           <Route path="/event2" element={<Event2 />} />
           <Route path="/hook" element={<Hook />} />
@@ -38,7 +38,8 @@ function App() {
           <Route path="/listCreate" element={<ListCreate />} />
           <Route path="/toParent" element={<ToParent />} />
           <Route path="/users" element={<Users />} />
-      </Routes>
+        </Routes>
+      </div>
     </div>
   );
 }
