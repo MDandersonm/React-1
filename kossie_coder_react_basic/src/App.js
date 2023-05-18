@@ -13,6 +13,8 @@ import ToParent from "./pages/10_ToParent";
 import Navbar from "./components/Navbar";
 import Users from "./pages/11_Users";
 
+import routes from "./routes";
+
 function App() {
   return (
     <div className="App">
@@ -27,8 +29,14 @@ function App() {
       </nav>
       <div className="container">
         <Routes>
-          <Route path="/event" element={<Event />} />
-          <Route path="/event2" element={<Event2 />} />
+          {/* route를 특정 파일로 빼서 하려면 아래처럼 하면된다. */}
+          {routes.map((route) => {
+            return (
+              <Route key={route.path} path={route.path}  element={<route.component />}/>
+            );
+          })}
+          {/* <Route path="/event" element={<Event />} /> */}
+          {/* <Route path="/event2" element={<Event2 />} /> */}
           <Route path="/hook" element={<Hook />} />
           <Route path="/useEffect" element={<UseEffect />} />
           <Route path="/component" element={<Component />} />

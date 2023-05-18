@@ -30,6 +30,11 @@ const Navbar = () => {
                 Event2
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/hook">
+                Hook
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
