@@ -10,32 +10,34 @@ import Map from "./pages/07_Map";
 import Map2 from "./pages/08_MapComponent";
 import ListCreate from "./pages/09_listCreate";
 import ToParent from "./pages/10_ToParent";
+import Navbar from "./components/Navbar";
+import Users from "./components/Users";
+
 function App() {
   return (
     <div className="App">
+      <Navbar></Navbar>
       <nav>
-        <Link to="/event">Event</Link> | {" "}
-        <Link to="/event2">Event2</Link> | {" "}
-        <Link to="/hook">Hook</Link>| {" "}
-        <Link to="/useEffect">UseEffect</Link>| {" "}
-        <Link to="/component">Component</Link>| {" "}
-        <Link to="/condition">Condition</Link>| {" "}
-        <Link to="/map">Map</Link>| {" "}
-        <Link to="/map2">Map2</Link>| {" "}
-        <Link to="/listCreate">ListCreate</Link>| {" "}
-        <Link to="/toParent">ToParent</Link>| {" "}
+        <Link to="/event">Event</Link> | <Link to="/event2">Event2</Link> |{" "}
+        <Link to="/hook">Hook</Link>| <Link to="/useEffect">UseEffect</Link>|{" "}
+        <Link to="/component">Component</Link>|{" "}
+        <Link to="/condition">Condition</Link>| <Link to="/map">Map</Link>|{" "}
+        <Link to="/map2">Map2</Link>| <Link to="/listCreate">ListCreate</Link>|{" "}
+        <Link to="/toParent">ToParent</Link>|{" "}
+        <Link to="/users">Users</Link>|{" "}
       </nav>
       <Routes>
-        <Route path="/event" element={<Event />} />
-        <Route path="/event2" element={<Event2 />} />
-        <Route path="/hook" element={<Hook />} />
-        <Route path="/useEffect" element={<UseEffect />} />
-        <Route path="/component" element={<Component />} />
-        <Route path="/condition" element={<Condition />} />
-        <Route path="/map" element={<Map />} />
-        <Route path="/map2" element={<Map2 />} />
-        <Route path="/listCreate" element={<ListCreate />} />
-        <Route path="/toParent" element={<ToParent />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/event2" element={<Event2 />} />
+          <Route path="/hook" element={<Hook />} />
+          <Route path="/useEffect" element={<UseEffect />} />
+          <Route path="/component" element={<Component />} />
+          <Route path="/condition" element={<Condition />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/map2" element={<Map2 />} />
+          <Route path="/listCreate" element={<ListCreate />} />
+          <Route path="/toParent" element={<ToParent />} />
+          <Route path="/users" element={<Users />} />
       </Routes>
     </div>
   );
