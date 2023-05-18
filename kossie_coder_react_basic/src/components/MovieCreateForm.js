@@ -2,22 +2,47 @@ import React, { useState } from "react";
 
 const MovieForm = ({ addMovieProps }) => {
   const [title, setMovieTitle] = useState("");
+  const [titleError, setTitleError] = useState("");
+
   const [year, setMovieYear] = useState("");
+  const [yearError, setYearError] = useState("");
 
   const resetForm = () => {
     setMovieTitle("");
     setMovieYear("");
   };
+  const validateForm = () => {
+    resetErrors();
+    let validated = true;
+    if (!title) {
+      setTitleError("영화제목을 넣어주세요");
+      validated = false;
+    }
+    if (!year) {
+      setYearError("개봉년도를 넣어주세요");
+      validated = false;
+    }
+    return validated;
+  };
+  const resetErrors = () => {
+    setTitleError("");
+    setYearError("");
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     // setMovies([...movies, { title: title, year: year }]);
-    addMovieProps({
-      id: Date.now(),
-      title: title,
-      year: year,
-    });
-    resetForm();
+    if (validateForm()) {
+      addMovieProps({
+        id: Date.now(),
+        title: title,
+        year: year,
+      });
+      resetErrors();
+      resetForm();
+    }
+
+
   };
 
   return (
@@ -29,12 +54,14 @@ const MovieForm = ({ addMovieProps }) => {
         value={title}
         onChange={(e) => setMovieTitle(e.target.value)}
       ></input>
+      <div style={{ color: "red" }}>{titleError}</div>
       <input
-        type="text"
+        type="number"
         placeholder="개봉년도"
         value={year}
         onChange={(e) => setMovieYear(e.target.value)}
       ></input>
+      <div style={{ color: "red" }}>{yearError}</div>
 
       {/* <div className="movie">
         <div className="movie-title">{movies[0].title}</div>
