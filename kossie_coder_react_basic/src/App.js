@@ -5,6 +5,7 @@ import Event2 from "./pages/Event2";
 import Hook from "./pages/Hook";
 import UseEffect from "./pages/UseEffect";
 import Component from "./pages/Component";
+import Condition from "./pages/Condition";
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
         <Link to="/hook">Hook</Link>| {" "}
         <Link to="/useEffect">UseEffect</Link>| {" "}
         <Link to="/component">Component</Link>| {" "}
+        <Link to="/condition">Condition</Link>| {" "}
       </nav>
       <Routes>
         <Route path="/event" element={<Event />} />
@@ -21,6 +23,7 @@ function App() {
         <Route path="/hook" element={<Hook />} />
         <Route path="/useEffect" element={<UseEffect />} />
         <Route path="/component" element={<Component />} />
+        <Route path="/condition" element={<Condition />} />
       </Routes>
     </div>
   );
