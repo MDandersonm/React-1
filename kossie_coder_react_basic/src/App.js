@@ -7,6 +7,7 @@ import UseEffect from "./pages/04_UseEffect";
 import Component from "./pages/05_Component";
 import Condition from "./pages/06_Condition";
 import Map from "./pages/07_Map";
+import Map2 from "./pages/08_MapComponent";
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
         <Link to="/component">Component</Link>| {" "}
         <Link to="/condition">Condition</Link>| {" "}
         <Link to="/map">Map</Link>| {" "}
+        <Link to="/map2">Map2</Link>| {" "}
       </nav>
       <Routes>
         <Route path="/event" element={<Event />} />
@@ -27,6 +29,7 @@ function App() {
         <Route path="/component" element={<Component />} />
         <Route path="/condition" element={<Condition />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/map2" element={<Map2 />} />
       </Routes>
     </div>
   );
