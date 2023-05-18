@@ -8,6 +8,8 @@ import Component from "./pages/05_Component";
 import Condition from "./pages/06_Condition";
 import Map from "./pages/07_Map";
 import Map2 from "./pages/08_MapComponent";
+import ListCreate from "./pages/09_listCreate";
+import ToParent from "./pages/10_ToParent";
 function App() {
   return (
     <div className="App">
@@ -20,6 +22,8 @@ function App() {
         <Link to="/condition">Condition</Link>| {" "}
         <Link to="/map">Map</Link>| {" "}
         <Link to="/map2">Map2</Link>| {" "}
+        <Link to="/listCreate">ListCreate</Link>| {" "}
+        <Link to="/toParent">ToParent</Link>| {" "}
       </nav>
       <Routes>
         <Route path="/event" element={<Event />} />
@@ -30,6 +34,8 @@ function App() {
         <Route path="/condition" element={<Condition />} />
         <Route path="/map" element={<Map />} />
         <Route path="/map2" element={<Map2 />} />
+        <Route path="/listCreate" element={<ListCreate />} />
+        <Route path="/toParent" element={<ToParent />} />
       </Routes>
     </div>
   );
