@@ -8,11 +8,11 @@ const Fcc = () => {
   
   useEffect(() => {
     console.log("effect함수실행2");
-  },[count]); //count가 변경되었을때만 실행
+  },[count]); //첫렌더링 + count가 변경되었을때만 실행
 
   useEffect(() => {
     console.log("effect함수실행3");
-  },[count,kossie]); //count,kossie가 변경되었을때만 실행
+  },[count,kossie]); //첫렌더링 + count,kossie가 변경되었을때만 실행
   useEffect(() => {
     console.log("first useEffect");
   },[]); //첫렌더링에만 실행
