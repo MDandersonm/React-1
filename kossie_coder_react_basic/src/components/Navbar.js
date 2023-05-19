@@ -26,13 +26,13 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/event2">
-                Event2
+              <NavLink className="nav-link" to="/useEffect">
+                UseEffect
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/hook">
-                Hook
+              <NavLink className="nav-link" to="/useRef">
+                UseRef
               </NavLink>
             </li>
           </ul>
