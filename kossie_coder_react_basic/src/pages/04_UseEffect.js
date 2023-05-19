@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-const UseEffect = () => {
+const Fcc = () => {
   const [count, setCount] = useState(0);
   const [kossie, setKossie] = useState(0);
   useEffect(() => {
@@ -35,4 +35,4 @@ const UseEffect = () => {
     </div>
   );
 };
-export default UseEffect;
+export default Fcc;
