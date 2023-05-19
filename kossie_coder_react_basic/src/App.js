@@ -27,7 +27,7 @@ function App() {
         <Link to="/map2">Map2</Link>| <Link to="/listCreate">ListCreate</Link>|{" "}
         <Link to="/toParent">ToParent</Link>| <Link to="/users">Users</Link>|{" "}
       </nav>
-      <div className="container">
+      <div className="container mt-5">
         <Routes>
           {/* route를 특정 파일로 빼서 하려면 아래처럼 하면된다. */}
           {routes.map((route) => {
