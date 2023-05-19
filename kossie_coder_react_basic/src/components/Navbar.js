@@ -35,6 +35,11 @@ const Navbar = () => {
                 UseRef
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/focus">
+                UseRefFocus
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

@@ -5,6 +5,7 @@ import User from "./pages/12_User";
 import UseState from "./starCoding/01_useState";
 import UseEffect from "./starCoding/02_UseEffect";
 import UseRef from "./starCoding/03_UseRef";
+import UseRefFocus from "./starCoding/04_UseRefFocus";
 export default [
   {
     path: "/event",
@@ -30,5 +31,9 @@ export default [
   {
     path: "/useRef",
     component: UseRef,
+  },
+  {
+    path: "/focus",
+    component: UseRefFocus,
   },
 ];
