@@ -24,7 +24,8 @@ const UseMemo2 = () => {
   }, [isKorea]);
 
   useEffect(() => {
-    console.log("location useEffect호출");
+    console.log("location useEffect호출(오래걸리는작업) ");
+    
   }, [location]);
   return (
     <div>
