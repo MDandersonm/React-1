@@ -45,6 +45,16 @@ const Navbar = () => {
                 UseContext
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/useMemo">
+                UseMemo
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/useMemo2">
+                UseMemo2
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
