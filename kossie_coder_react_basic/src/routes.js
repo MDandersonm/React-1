@@ -6,6 +6,7 @@ import UseState from "./starCoding/01_useState";
 import UseEffect from "./starCoding/02_UseEffect";
 import UseRef from "./starCoding/03_UseRef";
 import UseRefFocus from "./starCoding/04_UseRefFocus";
+import UseContext from "./starCoding/05_UseContext";
 export default [
   {
     path: "/event",
@@ -35,5 +36,9 @@ export default [
   {
     path: "/focus",
     component: UseRefFocus,
+  },
+  {
+    path: "/useContext",
+    component: UseContext,
   },
 ];

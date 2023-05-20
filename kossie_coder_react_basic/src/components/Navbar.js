@@ -40,6 +40,11 @@ const Navbar = () => {
                 UseRefFocus
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/useContext">
+                UseContext
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
