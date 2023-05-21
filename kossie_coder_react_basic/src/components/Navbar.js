@@ -67,6 +67,21 @@ const Navbar = () => {
               UseReducer2
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/fetch">
+              Fetch
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/customHooks">
+              CustomHooks
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/customHooks2">
+              CustomHooks2
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>

@@ -13,6 +13,9 @@ import UseCallback from "./starCoding/08_UseCallback";
 import UseCallback2 from "./starCoding/09_UseCallback2";
 import UseReducer from "./starCoding/10_UseReducer";
 import UseReducer2 from "./starCoding/11_UseReducer2";
+import Fetch from "./starCoding/12_Fetch";
+import CustomHooks from "./starCoding/13_CustomHooks";
+import CustomHooks2 from "./starCoding/14_CustomHooks2";
 export default [
   {
     path: "/event",
@@ -70,5 +73,17 @@ export default [
   {
     path: "/useReducer2",
     component: UseReducer2,
+  },
+  {
+    path: "/fetch",
+    component: Fetch,
+  },
+  {
+    path: "/customHooks",
+    component: CustomHooks,
+  },
+  {
+    path: "/customHooks2",
+    component: CustomHooks2,
   },
 ];
