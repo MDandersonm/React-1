@@ -9,6 +9,8 @@ import UseRefFocus from "./starCoding/04_UseRefFocus";
 import UseContext from "./starCoding/05_UseContext";
 import UseMemo from "./starCoding/06_UseMemo";
 import UseMemo2 from "./starCoding/07_UseMemo2";
+import UseCallback from "./starCoding/08_UseCallback";
+import UseCallback2 from "./starCoding/09_UseCallback2";
 export default [
   {
     path: "/event",
@@ -50,5 +52,13 @@ export default [
   {
     path: "/useMemo2",
     component: UseMemo2,
+  },
+  {
+    path: "/useCallback",
+    component: UseCallback,
+  },
+  {
+    path: "/useCallback2",
+    component: UseCallback2,
   },
 ];
