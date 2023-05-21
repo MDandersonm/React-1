@@ -83,6 +83,13 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/redux1">
+              redux-LifeCoding
+            </NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   );
