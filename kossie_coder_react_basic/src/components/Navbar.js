@@ -104,6 +104,11 @@ const Navbar = () => {
               reduxToolKit-LifeCoding2
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/reduxtoolkit3">
+              reduxToolKit-Thunk
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>

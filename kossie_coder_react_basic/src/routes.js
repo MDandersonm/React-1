@@ -20,6 +20,7 @@ import Redux1 from "./redux/01_lifeCoding";
 import Redux2 from "./redux/02_lifeCoding2";
 import lifeCodingReduxToolkit from "./reduxToolkit/01_lifeCodingReduxToolkit";
 import lifeCodingReduxToolkit2 from "./reduxToolkit/02_lifeCodingReduxToolkit2";
+import lifeCodingReduxToolKitThunk from "./reduxToolkit/03_lifeCodingReduxToolKitThunk";
 export default [
   {
     path: "/event",
@@ -105,5 +106,9 @@ export default [
   {
     path: "/reduxtoolkit2",
     component: lifeCodingReduxToolkit2,
+  },
+  {
+    path: "/reduxtoolkit3",
+    component: lifeCodingReduxToolKitThunk,
   },
 ];

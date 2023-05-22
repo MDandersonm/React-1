@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import Counter2 from "./components/Counter2";
-import store from './reduxToolKit/store'
+import store from './02_reduxToolKit/store'
 const lifeCodingReduxToolkit = () => {
 
 
