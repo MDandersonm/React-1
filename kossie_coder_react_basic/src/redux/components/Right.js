@@ -8,6 +8,14 @@ const Right = () => {
       Right
       <input
         type="button"
+        value="plus"
+        onClick={() => {
+          dispatch({ type: "plus" });
+        }}
+      ></input>
+      <hr></hr>
+      <input
+        type="button"
         value="plus1"
         onClick={() => {
           dispatch({ type: "lifeCoding/plus1" });

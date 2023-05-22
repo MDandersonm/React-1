@@ -11,6 +11,7 @@ const lifeCodingReducer = (state = initialState, action) => {
   const newState = { ...state };
   switch (action.type) {
     case "lifeCoding/plus1":
+      console.log("lifeCoding/plus1")
       newState.number1 = newState.number1 + 1;
       return newState;
     case "lifeCoding/plus2":
