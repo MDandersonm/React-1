@@ -110,6 +110,13 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/mui1">
+              lifeCoding_MUI_Login
+            </NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   );

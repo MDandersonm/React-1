@@ -21,6 +21,8 @@ import Redux2 from "./redux/02_lifeCoding2";
 import lifeCodingReduxToolkit from "./reduxToolkit/01_lifeCodingReduxToolkit";
 import lifeCodingReduxToolkit2 from "./reduxToolkit/02_lifeCodingReduxToolkit2";
 import lifeCodingReduxToolKitThunk from "./reduxToolkit/03_lifeCodingReduxToolKitThunk";
+import MuiRoutes from "./MuiRoutes";
+
 export default [
   {
     path: "/event",
@@ -111,4 +113,5 @@ export default [
     path: "/reduxtoolkit3",
     component: lifeCodingReduxToolKitThunk,
   },
+  ...MuiRoutes,
 ];
