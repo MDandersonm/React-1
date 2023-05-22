@@ -17,6 +17,7 @@ import Fetch from "./starCoding/12_Fetch";
 import CustomHooks from "./starCoding/13_CustomHooks";
 import CustomHooks2 from "./starCoding/14_CustomHooks2";
 import Redux1 from "./redux/01_lifeCoding";
+import Redux2 from "./redux/02_lifeCoding2";
 export default [
   {
     path: "/event",
@@ -90,5 +91,9 @@ export default [
   {
     path: "/redux1",
     component: Redux1,
+  },
+  {
+    path: "/redux2",
+    component: Redux2,
   },
 ];
