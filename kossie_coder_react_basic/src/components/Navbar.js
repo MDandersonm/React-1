@@ -94,6 +94,16 @@ const Navbar = () => {
               redux-LifeCoding2
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/reduxtoolkit1">
+              reduxToolKit-LifeCoding
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/reduxtoolkit2">
+              reduxToolKit-LifeCoding2
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>

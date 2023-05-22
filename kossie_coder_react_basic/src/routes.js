@@ -18,6 +18,8 @@ import CustomHooks from "./starCoding/13_CustomHooks";
 import CustomHooks2 from "./starCoding/14_CustomHooks2";
 import Redux1 from "./redux/01_lifeCoding";
 import Redux2 from "./redux/02_lifeCoding2";
+import lifeCodingReduxToolkit from "./reduxToolkit/01_lifeCodingReduxToolkit";
+import lifeCodingReduxToolkit2 from "./reduxToolkit/02_lifeCodingReduxToolkit2";
 export default [
   {
     path: "/event",
@@ -95,5 +97,13 @@ export default [
   {
     path: "/redux2",
     component: Redux2,
+  },
+  {
+    path: "/reduxtoolkit1",
+    component: lifeCodingReduxToolkit,
+  },
+  {
+    path: "/reduxtoolkit2",
+    component: lifeCodingReduxToolkit2,
   },
 ];
