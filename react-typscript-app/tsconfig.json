@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES6",//"es5"
     "lib": [
+      "es6",//없었음
       "dom",
       "dom.iterable",
       "esnext"
