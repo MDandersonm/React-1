@@ -128,6 +128,21 @@ const Navbar = () => {
               Variable
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/ecma3">
+              Class
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/ecma4">
+              Function
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/ecma5">
+              ArrayFunction
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>
