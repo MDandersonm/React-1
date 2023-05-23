@@ -22,6 +22,7 @@ import lifeCodingReduxToolkit from "./reduxToolkit/01_lifeCodingReduxToolkit";
 import lifeCodingReduxToolkit2 from "./reduxToolkit/02_lifeCodingReduxToolkit2";
 import lifeCodingReduxToolKitThunk from "./reduxToolkit/03_lifeCodingReduxToolKitThunk";
 import MuiRoutes from "./MuiRoutes";
+import EcmaRoutes from "./EcmaRoutes";
 
 export default [
   {
@@ -114,4 +115,5 @@ export default [
     component: lifeCodingReduxToolKitThunk,
   },
   ...MuiRoutes,
+  ...EcmaRoutes
 ];

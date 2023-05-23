@@ -117,6 +117,18 @@ const Navbar = () => {
             </NavLink>
           </li>
         </ul>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/ecma1">
+              Array
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/ecma2">
+              Variable
+            </NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   );
