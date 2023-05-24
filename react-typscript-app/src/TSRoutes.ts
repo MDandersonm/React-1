@@ -1,10 +1,10 @@
-import TS from "./pages/01_TS";
+import CodingNuNa from "./pages/01_CodingNuNa";
 
 
 const TSRoutes = [
   {
     path: "/ts1",
-    component: TS,
+    component: CodingNuNa,
   },
 
 ];

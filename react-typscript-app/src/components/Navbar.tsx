@@ -12,7 +12,7 @@ const Navbar = () => {
         <ul className="navbar-nav">
           <li className="nav-item">
             <NavLink className="nav-link" to="/ts1">
-              TS1
+              CodingNuNa
             </NavLink>
           </li>
         </ul>
