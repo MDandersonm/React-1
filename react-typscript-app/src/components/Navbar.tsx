@@ -15,6 +15,21 @@ const Navbar = () => {
               CodingNuNa
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/ts2">
+              CodingAngma
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/ts3">
+              Angma_ECMA6
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/ts4">
+              Angma_Promise
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>
