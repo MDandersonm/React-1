@@ -30,6 +30,11 @@ const Navbar = () => {
               Angma_Promise
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/ts5">
+              CodingMoon
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>
