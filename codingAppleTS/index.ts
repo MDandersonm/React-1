@@ -27,11 +27,16 @@ type Member2 = {
 };
 let john2: Member2 = { name: "kmim" };
 
-//문자로 들어오는 모든 key들은 string을 가져야한다.
+//모든 key들은 문자를가져야하고 밸류로 string을 가져야한다.
 type Member3 = {
   [key: string]: string;
 };
-let john3: Member3 = { 123: "kmim", asd: "kim" };
+let john3: Member3 = { 123: "kmim", asd: "kim"};
+
+//JavaScript에서는 객체의 키가 사실상 항상 문자열입니다.
+//숫자로 키를 정의하더라도 내부적으로 문자열로 변환됩니다.
+// TypeScript는 이 사실을 알고 있으며, 
+//따라서 문자열 인덱스 시그니처 [key: string]: string;이 숫자 키를 허용합니다.
 
 class User {
   name: string;
