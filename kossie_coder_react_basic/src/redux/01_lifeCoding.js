@@ -6,9 +6,9 @@ import Right from "./components/Right";
 //provider:컴퍼넌트
 //useSelector:어떤state값을 쓰고싶은지 선택
 //useDispatch :state값 변경시킬때
-//connect
+//connect: 쓰지 않음
 
-const reducer = (currentState, action) => {
+const reducer = (currentState, action) => { //reducer생성 store안의 state를 어떻게바꿀것인가 결정하는 역할을 한다.
   //리덕스는 각각의state의 변화를 불변하게 유지해야되는데 그러기 위해서 새로운 state를 만드는데 과거state를 복제
   if (currentState === undefined) {
     //state가 정의되지않았을경우
@@ -20,7 +20,8 @@ const reducer = (currentState, action) => {
   }
   return newState;
 };
-const store = createStore(reducer);
+
+const store = createStore(reducer);//store생성 
 
 const lifeCoding = () => {
   return (
