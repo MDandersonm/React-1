@@ -40,7 +40,7 @@ const ListPage = () => {
         </div>
       </div>
 
-      {posts.map((post) => {
+      {posts.length >0 ? posts.map((post) => {
         return (
           <Card
             title={post.title}
@@ -65,7 +65,7 @@ const ListPage = () => {
           //     <div className="card-body">{post.title}</div>
           //   </div>
         );
-      })}
+      }): "No Blog posts found "}
     </div>
   );
 };
