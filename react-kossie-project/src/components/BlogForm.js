@@ -1,17 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const BlogForm = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const history = useHistory();
   const onSubmit = () => {
     console.log(title, body);
     //json-server --watch db.json --port 3001
-    axios.post("http://localhost:3001/posts", {
-      title: title, // 같은경우 title만 써도 됨 아래와같이 body만 써도됨
-      body, // body: body
-    });
+    axios
+      .post("http://localhost:3001/posts", {
+        title: title, // 같은경우 title만 써도 됨 아래와같이 body만 써도됨
+        body, // body: body
+      })
+      .then(() => {
+        history.push("/blogs");
+      });
   };
   return (
     <div>
