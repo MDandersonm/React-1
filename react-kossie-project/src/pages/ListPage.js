@@ -21,7 +21,14 @@ const ListPage = () => {
       <h1 className="my-5">Blogs</h1>
       {posts.map((post) => {
         return (
-          <Card title={post.title} key={post.id}></Card>
+          <Card title={post.title} key={post.id}>
+
+            {/* props의 children 으로 자식컴퍼넌트에서 받을수있다. */}
+            <div className="d-flex justify-content-between">
+                <div>{post.title}</div>
+                <button>button</button>
+            </div>
+          </Card>
           //   <div className="card my-3" key={post.id}>
           //     <div className="card-body">{post.title}</div>
           //   </div>
