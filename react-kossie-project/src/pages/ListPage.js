@@ -41,12 +41,12 @@ const ListPage = () => {
         return(<div>"No Blog posts found "</div>)
     }
     return (
-        posts.map((post) => {
+        posts.map((post) => { 
           return (
             <Card
               title={post.title}
               key={post.id}
-              onClick={() => history.push("/blogs/edit")}
+              onClick={() => history.push(`/blogs/${post.id}`)}
             >
               {/* 함수도 props로 내려줄수있다. */}
               {/* props의 children 으로 자식컴퍼넌트에서 받을수있다. */}
