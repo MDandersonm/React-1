@@ -12,6 +12,18 @@ const ListPage = () => {
       setPosts(res.data);
     });
   };
+  const deleteBlog = (e, id) => {
+    e.stopPropagation(); //부모컴퍼넌트의 이벤트발생을 막아줌
+    console.log("delete");
+    axios.delete(`http://localhost:3001/posts/${id}`).then(() => {
+    //   setPosts((prevPosts) => {
+    //     return prevPosts.filter((post) => {
+    //       return post.id !== id;
+    //     });
+    //   });
+      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));//중괄호 생략 버전
+    });
+  };
   useEffect(() => {
     //렌더링될떄 실행
     getPosts();
@@ -40,9 +52,12 @@ const ListPage = () => {
             <div className="d-flex justify-content-between">
               <div>{post.title}</div>
               <div>
-                <button className="btn btn-danger btn-sm" onClick={(e)=>{
-                    e.stopPropagation();//부모컴퍼넌트의 이벤트발생을 막아줌
-                    console.log("delete")}}>Delete</button>
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={(e) => deleteBlog(e, post.id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </Card>
