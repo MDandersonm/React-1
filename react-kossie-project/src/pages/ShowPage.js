@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 const ShowPage = () => {
   const { id } = useParams(); //url에있는 id부분을 가져와서 사용가능
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const history = useHistory();
   console.log(id);
 
   const getPost = (id) => {
