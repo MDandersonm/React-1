@@ -6,7 +6,7 @@ import {
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { bool } from "prop-types";
-import propTypes from "prop-types"
+import propTypes from "prop-types";
 const BlogForm = ({ editing }) => {
   const [title, setTitle] = useState("");
   const [originalTitle, setOriginalTitle] = useState("");
@@ -14,6 +14,9 @@ const BlogForm = ({ editing }) => {
   const [originalBody, setOriginalBody] = useState("");
   const [publish, setPublish] = useState(false);
   const [originalPublish, setOriginalPublish] = useState(false);
+  const [titleError, setTitleError] = useState(false);
+  const [bodyError, setBodyError] = useState(false);
+
   const history = useHistory();
   const { id } = useParams();
   useEffect(() => {
@@ -51,7 +54,27 @@ const BlogForm = ({ editing }) => {
     console.log(e.target.checked);
     setPublish(e.target.checked);
   };
+
+  const validateForm = () => {
+    let validated = true;
+
+    if (title === "") {
+      setTitleError(true);
+      validated = false;
+    }
+    if (body === "") {
+      setBodyError(true);
+      validated = false;
+    }
+    return validated;
+  };
   const onSubmit = () => {
+    setTitleError(false);//리셋
+    setBodyError(false);//리셋
+    if(!validateForm()){//validate가 true가 아니면(false면) 종료
+      return
+    }
+
     if (editing) {
       axios
         .patch(`http://localhost:3001/posts/${id}`, {
@@ -84,18 +107,19 @@ const BlogForm = ({ editing }) => {
       <div className="mb-3">
         <label className="form-label">Title</label>
         <input
-          className="form-control"
+          className={`form-control ${titleError ? "border-danger" : ""}`}
           value={title}
           onChange={(event) => {
             setTitle(event.target.value);
             console.log(event.target.value);
           }}
         ></input>
+        {titleError && <div className="text-danger">Title is required.</div>}
       </div>
       <div className="mb-3">
         <label className="form-label">Body</label>
         <textarea
-          className="form-control"
+          className={`form-control ${bodyError ? "border-danger" : ""}`}
           value={body}
           onChange={(event) => {
             setBody(event.target.value);
@@ -104,6 +128,7 @@ const BlogForm = ({ editing }) => {
           rows="10"
         />
       </div>
+      {bodyError && <div className="text-danger">Body is required.</div>}
       <div className="form-check mb-3">
         <input
           className="form-check-input"
