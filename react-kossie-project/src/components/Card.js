@@ -8,7 +8,7 @@ const Card = ({ title, children, onClick }) => {
   return (
     <div className="card my-3 cursor-pointer" onClick={onClick}>
       {/* <div className="card-body">{props.title}</div> */}
-      <div className="card-body">
+      <div className="card-body p-2">
         {/* {title} */}
         {children && <div>{children}</div>}
         {/* //children이 존재하면 출력하라는말 */}
