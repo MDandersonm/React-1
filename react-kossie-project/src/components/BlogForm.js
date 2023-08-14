@@ -6,7 +6,7 @@ import {
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { bool } from "prop-types";
-
+import propTypes from "prop-types"
 const BlogForm = ({ editing }) => {
   const [title, setTitle] = useState("");
   const [originalTitle, setOriginalTitle] = useState("");
@@ -129,7 +129,7 @@ const BlogForm = ({ editing }) => {
 };
 
 BlogForm.protoTypes = {
-  editing: bool,
+  editing: propTypes.bool,
 };
 
 BlogForm.defaultProps = {

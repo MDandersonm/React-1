@@ -7,28 +7,32 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { bool } from "prop-types";
 import Pagination from "./Pagination";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import propTypes from "prop-types";
 const BlogList = ({ isAdmin }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1); //현재 페이지번호
-  const [numberOfPosts, setNumberOfPosts] = useState(0);//받아온 총 글 수
+  const [numberOfPosts, setNumberOfPosts] = useState(0); //받아온 총 글 수
   const [numberOfPages, setNumberOfPages] = useState(0); //총 만들어야할 페이지수
-  const limit = 1;
+  const [searchText, setSearchText] = useState(""); //검색란
+  const limit = 2;
   const history = useHistory();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  console.log("location.search",location.search); //?page=8
-  console.log("params.get('page')",params.get("page")); //8
+  console.log("location.search", location.search); //?page=8
+  console.log("params.get('page')", params.get("page")); //8
   const pageParam = params.get("page");
 
   useEffect(() => {
-    console.log("총페이지수 계산 useEffect",Math.ceil(numberOfPosts / limit))
+    console.log("총페이지수 계산 useEffect", Math.ceil(numberOfPosts / limit));
     setNumberOfPages(Math.ceil(numberOfPosts / limit));
   }, [numberOfPosts]);
 
-  const onClickPagebutton = (page) => {//누른 페이지 번호가 page로 들어옴
+  const onClickPagebutton = (page) => {
+    //누른 페이지 번호가 page로 들어옴
     history.push(`${location.pathname}?page=${page}`);
-    // getPosts(page);
+    setCurrentPage(page);
+    getPosts(page);
   };
   const getPosts = useCallback(
     (page = 1) => {
@@ -37,9 +41,10 @@ const BlogList = ({ isAdmin }) => {
       // axios.get(`http://localhost:3001/posts?_page=${page}&_limit=5&_sort=id&_order=desc`).then((res) => {
       let params = {
         _page: page,
-        _limit: limit,//받아올 글 개수
+        _limit: limit, //받아올 글 개수
         _sort: "id",
         _order: "desc",
+        title_like: searchText, //title일부분 일치검색
       };
 
       if (!isAdmin) {
@@ -57,16 +62,43 @@ const BlogList = ({ isAdmin }) => {
           setLoading(false);
         });
     },
-    [isAdmin]
+    [isAdmin, searchText]
   ); // useCallback : 함수를 기억을해줌  컴퍼넌트가 랜더링되더라도 새로운 함수를 생성하지않고 기억해놨다가 그대로 사용
   //isAdmin이 변경이되었을때만 함수를 새로 생성.
 
   useEffect(() => {
     console.log("useEffect2 setCurrentPage, getPosts");
-
     setCurrentPage(parseInt(pageParam) || 1); //pageParam이 null이면  1
-    getPosts(parseInt(pageParam) || 1);
-  }, [pageParam, getPosts]);
+
+    // ((page = 1) => {
+    //   //디폴트가 1이라는말
+    //   // 아래처럼 바꿀 수 있다.
+    //   // axios.get(`http://localhost:3001/posts?_page=${page}&_limit=5&_sort=id&_order=desc`).then((res) => {
+    //   let params = {
+    //     _page: page,
+    //     _limit: limit, //받아올 글 개수
+    //     _sort: "id",
+    //     _order: "desc",
+    //   };
+
+    //   if (!isAdmin) {
+    //     params = { ...params, publish: true };
+    //   }
+    //   axios
+    //     .get(`http://localhost:3001/posts`, {
+    //       params, //params: params,
+    //     })
+    //     .then((res) => {
+    //       console.log("받아온 총 글 수", res.headers["x-total-count"]);
+    //       setNumberOfPosts(res.headers["x-total-count"]);
+    //       console.log("받아온 글 리스트들 res.data!", res.data);
+    //       setPosts(res.data);
+    //       setLoading(false);
+    //     });
+    // })(parseInt(pageParam) || 1);//(함수)()  ->함수실행하라는 뜻
+
+    getPosts(parseInt(pageParam) || 1); //위에 새로 정의하고 실행했음
+  }, []);
   //   컴퍼넌트가 랜더링이될때마다 getpost 함수는 새로생성된다
   //랜더링될때마다 getpost가 바뀌었구나 인식을해서->
   //useEffect가 실행->set에의해 컴퍼넌트리랜더링 ->함수 새로생성->또 useeffect 실행
@@ -93,9 +125,9 @@ const BlogList = ({ isAdmin }) => {
   if (loading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-  if (posts.length === 0) {
-    return <div>"No Blog posts found "</div>;
-  }
+  //   if (posts.length === 0) {
+  //     return <div>"No Blog posts found "</div>;
+  //   }
 
   const renderBlogList = () => {
     return (
@@ -133,23 +165,46 @@ const BlogList = ({ isAdmin }) => {
         })
     );
   };
+  const onSearch = (e) => {
+    if (e.key === "Enter") {
+      history.push(`${location.pathname}?page=1`);
+      setCurrentPage(1);
+      getPosts(1);
+    }
+  };
   return (
     <div>
-      {renderBlogList()}
-      {/* onClick이름으로 prop로서 보냄 */}
-      {numberOfPages > 1 && (
-        <Pagination
-          currentPage={currentPage}
-          numberOfPages={numberOfPages}
-          onClick1={onClickPagebutton}
-        ></Pagination>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Search.."
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        onKeyUp={onSearch}
+      ></input>
+      <hr />
+      {posts.length === 0 ? (
+        <div>no blog posts found</div>
+      ) : (
+        <>
+          {" "}
+          {renderBlogList()}
+          {/* onClick이름으로 prop로서 보냄 */}
+          {numberOfPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              numberOfPages={numberOfPages}
+              onClick1={onClickPagebutton}
+            ></Pagination>
+          )}
+        </>
       )}
     </div>
   );
 };
 
 BlogList.propTypes = {
-  isAdmin: bool,
+  isAdmin: propTypes.bool,
 };
 BlogList.defaultProps = {
   isAdmin: false,
