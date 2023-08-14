@@ -2,8 +2,30 @@
   "posts": [
     {
       "title": "ㄱ1",
-      "body": "ㄱ2",
-      "createdAt": 1691999154582,
+      "body": "ㄱ11",
+      "publish": true,
+      "createdAt": 1692011338354,
+      "id": 1
+    },
+    {
+      "title": "리덕스",
+      "body": "리덕스2",
+      "publish": false,
+      "createdAt": 1692011623455,
+      "id": 2
+    },
+    {
+      "title": "ㄱㄱ",
+      "body": "ㄱㄱ1",
+      "publish": true,
+      "createdAt": 1692011881240,
+      "id": 3
+    },
+    {
+      "title": "ㄴㄴ",
+      "body": "ㄴㄴ",
+      "publish": false,
+      "createdAt": 1692011885601,
       "id": 4
     }
   ]

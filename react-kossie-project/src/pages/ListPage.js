@@ -31,45 +31,44 @@ const ListPage = () => {
     //렌더링될떄 실행
     getPosts();
   }, []); //[] 넣으면 딱 1번만 실행
-  const renderBlogList= ()=>{
-    if (loading){
+  const renderBlogList = () => {
+    if (loading) {
+      return <LoadingSpinner></LoadingSpinner>;
+    }
+    if (posts.length === 0) {
+      return <div>"No Blog posts found "</div>;
+    }
+    return posts
+      .filter((post) => {
+        return post.publish;
+      })
+      .map((post) => {
         return (
-            <LoadingSpinner></LoadingSpinner>
-          )
-    }
-    if(posts.length===0){
-        return(<div>"No Blog posts found "</div>)
-    }
-    return (
-        posts.map((post) => { 
-          return (
-            <Card
-              title={post.title}
-              key={post.id}
-              onClick={() => history.push(`/blogs/${post.id}`)}
-            >
-              {/* 함수도 props로 내려줄수있다. */}
-              {/* props의 children 으로 자식컴퍼넌트에서 받을수있다. */}
-              <div className="d-flex justify-content-between">
-                <div>{post.title}</div>
-                <div>
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={(e) => deleteBlog(e, post.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
+          <Card
+            title={post.title}
+            key={post.id}
+            onClick={() => history.push(`/blogs/${post.id}`)}
+          >
+            {/* 함수도 props로 내려줄수있다. */}
+            {/* props의 children 으로 자식컴퍼넌트에서 받을수있다. */}
+            <div className="d-flex justify-content-between">
+              <div>{post.title}</div>
+              <div>
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={(e) => deleteBlog(e, post.id)}
+                >
+                  Delete
+                </button>
               </div>
-            </Card>
-            //   <div className="card my-3" key={post.id}>
-            //     <div className="card-body">{post.title}</div>
-            //   </div>
-          );
-        })
-      )
-
-  }
+            </div>
+          </Card>
+          //   <div className="card my-3" key={post.id}>
+          //     <div className="card-body">{post.title}</div>
+          //   </div>
+        );
+      });
+  };
 
   return (
     <div>
