@@ -14,6 +14,7 @@ const BlogForm = () => {
       .post("http://localhost:3001/posts", {
         title: title, // 같은경우 title만 써도 됨 아래와같이 body만 써도됨
         body, // body: body
+        createdAt:Date.now()
       })
       .then(() => {
         history.push("/blogs");

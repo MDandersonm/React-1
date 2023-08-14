@@ -7,7 +7,7 @@ const ShowPage = () => {
   const { id } = useParams(); //url에있는 id부분을 가져와서 사용가능
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const history =useHistory()
+  const history = useHistory();
   console.log(id);
 
   const getPost = (id) => {
@@ -20,13 +20,21 @@ const ShowPage = () => {
 
   useEffect(() => {
     getPost(id);
-  }, [id]); //의존성배열. id가 바뀔때만 리랜더링 
+  }, [id]); //의존성배열. id가 바뀔때만 리랜더링
+
+  const printDate = (timestamp) => {
+    return new Date(timestamp).toLocaleString();
+  };
   if (loading) {
     return <LoadingSpinner />;
   }
   return (
     <div>
       <h1>{post.title}</h1>
+      <small className="text-muted">
+        Created At: {printDate(post.createdAt)}
+      </small>
+      <hr />
       <p>{post.body}</p>
       {/* <button onClick={()=>{history.push('/blogs/3')}}>Click</button> */}
     </div>
