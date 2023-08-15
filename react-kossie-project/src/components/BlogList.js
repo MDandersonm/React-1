@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import axios from "axios";
 import { useState, useEffect, useCallback } from "react";
 import Card from "../components/Card";
@@ -17,7 +17,9 @@ const BlogList = ({ isAdmin }) => {
   const [numberOfPosts, setNumberOfPosts] = useState(0); //받아온 총 글 수
   const [numberOfPages, setNumberOfPages] = useState(0); //총 만들어야할 페이지수
   const [searchText, setSearchText] = useState(""); //검색란
-  const [toasts, setToasts] = useState([]); //toast
+  const toasts = useRef([]); //useRef
+  const [, setToastRerender] = useState(false); //useRef가 리랜더링이 안되니 이걸로 리랜더링
+
   const limit = 2;
   const history = useHistory();
   const location = useLocation();
@@ -108,18 +110,23 @@ const BlogList = ({ isAdmin }) => {
   //->무한반복 그래서 getPosts함수를 useEffect내부로 넣어주면 된다. 아니면 useCallback사용
   //
   const deleteToast = (id) => {
-    const filteredToast = toasts.filter((toast) => {
+    const filteredToast = toasts.current.filter((toast) => {
       return toast.id !== id;
     });
-    setToasts(filteredToast);
+    // setToasts(filteredToast); //useRef쓰면서 제거
+    toasts.current = filteredToast;
+    setToastRerender((prev) => !prev);
   };
   const addToast = (toast) => {
-    const id =uuidv4();
+    const id = uuidv4();
     const toastWithId = {
       ...toast,
-      id: id
+      id: id,
     };
-    setToasts((prev) => [...prev, toastWithId]);
+
+    // setToasts((prev) => [...prev, toastWithId]); //useRef쓰면서 제거
+    toasts.current = [...toasts.current, toastWithId];
+    setToastRerender((prev) => !prev); //true면 false로 false면 true로
 
     setTimeout(() => {
       deleteToast(id);
@@ -196,7 +203,7 @@ const BlogList = ({ isAdmin }) => {
   };
   return (
     <div>
-      <Toast toasts={toasts} deleteToast={deleteToast} />
+      <Toast toasts={toasts.current} deleteToast={deleteToast} />
       <input
         type="text"
         className="form-control"
