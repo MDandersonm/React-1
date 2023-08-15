@@ -8,6 +8,8 @@ import { bool } from "prop-types";
 import Pagination from "./Pagination";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import propTypes from "prop-types";
+import Toast from "./Toast";
+import { v4 as uuidv4 } from "uuid";
 const BlogList = ({ isAdmin }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,6 +17,7 @@ const BlogList = ({ isAdmin }) => {
   const [numberOfPosts, setNumberOfPosts] = useState(0); //받아온 총 글 수
   const [numberOfPages, setNumberOfPages] = useState(0); //총 만들어야할 페이지수
   const [searchText, setSearchText] = useState(""); //검색란
+  const [toasts, setToasts] = useState([]); //toast
   const limit = 2;
   const history = useHistory();
   const location = useLocation();
@@ -104,6 +107,24 @@ const BlogList = ({ isAdmin }) => {
   //useEffect가 실행->set에의해 컴퍼넌트리랜더링 ->함수 새로생성->또 useeffect 실행
   //->무한반복 그래서 getPosts함수를 useEffect내부로 넣어주면 된다. 아니면 useCallback사용
   //
+  const deleteToast = (id) => {
+    const filteredToast = toasts.filter((toast) => {
+      return toast.id !== id;
+    });
+    setToasts(filteredToast);
+  };
+  const addToast = (toast) => {
+    const id =uuidv4();
+    const toastWithId = {
+      ...toast,
+      id: id
+    };
+    setToasts((prev) => [...prev, toastWithId]);
+
+    setTimeout(() => {
+      deleteToast(id);
+    }, 5000); //5초후 실행
+  };
 
   const deleteBlog = (e, id) => {
     e.stopPropagation(); //부모컴퍼넌트의 이벤트발생을 막아줌
@@ -115,6 +136,7 @@ const BlogList = ({ isAdmin }) => {
       //     });
       //   });
       setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id)); //중괄호 생략 버전
+      addToast({ text: "Successfully deleted", type: "success" });
     });
   };
   //   useEffect(() => {
@@ -174,6 +196,7 @@ const BlogList = ({ isAdmin }) => {
   };
   return (
     <div>
+      <Toast toasts={toasts} deleteToast={deleteToast} />
       <input
         type="text"
         className="form-control"
