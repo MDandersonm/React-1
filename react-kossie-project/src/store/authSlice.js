@@ -8,10 +8,12 @@ export const authSlice = createSlice({
   initialState: initialState, //initialState로 축약가능
   reducers: {
     login: (state) => {
+      localStorage.setItem('isLoggedIn','yes');
       state.isLoggedIn = true;
     },
     logout: (state) => {
       state.isLoggedIn = false;
+      localStorage.removeItem('isLoggedIn');
     },
   },
 });

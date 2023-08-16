@@ -4,13 +4,31 @@ import NavBar from "./components/NavBar";
 import Toast from "./components/Toast";
 import routes from "./routes";
 import useToast from "./hooks/toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "./ProtectedRoute";
+import { useEffect, useState } from "react";
+import { login } from "./store/authSlice";
+import LoadingSpinner from "./components/LoadingSpinner";
 function App() {
   // const [toasts, addToast, deleteToast] = useToast();
   // const [addToast, deleteToast] = useToast();
   const { addToast, deleteToast } = useToast();
   const toasts = useSelector((state) => state.toast.toasts);
+
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    //useEffect는 컴퍼넌트가 랜더링되고 제일 마지막에 실행됨
+    if (localStorage.getItem("isLoggedIn")) {
+      //로그인이되어있으면
+      dispatch(login());
+    }
+    setLoading(false); //useEffect가 끝난후 컴퍼넌트가 랜더링되게끔 하기
+  }, []);
+
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
   return (
     // <React.Fragment>
     <BrowserRouter>
