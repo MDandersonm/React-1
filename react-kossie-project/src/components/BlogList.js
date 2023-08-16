@@ -153,7 +153,13 @@ const BlogList = ({ isAdmin }) => {
         //       return post.id !== id;
         //     });
         //   });
-        setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id)); //중괄호 생략 버전
+        
+        //아래처럼하면 5개에서 1개를 지우면 4개가 뜨게된다 
+        // setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id)); //중괄호 생략 버전
+        
+        //아래처럼하면 5개에서 1개를지우면 다시 새로고침되게함
+        getPosts(1);
+        
         addToast({ text: "Successfully deleted", type: "success" });
       })
       .catch((e) => {
