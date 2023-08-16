@@ -5,6 +5,7 @@ import Toast from "./components/Toast";
 import routes from "./routes";
 import useToast from "./hooks/toast";
 import { useSelector } from "react-redux";
+import ProtectedRoute from "./ProtectedRoute";
 function App() {
   // const [toasts, addToast, deleteToast] = useToast();
   // const [addToast, deleteToast] = useToast();
@@ -22,6 +23,16 @@ function App() {
           {/* exact: / 라고 정확하게 일치해야함 안그러면 /blog도  /로 매칭이됨 */}
           {routes.map((route) => {
             const Component = route.component;
+            if (route.auth) {
+              return (
+                <ProtectedRoute
+                  path={route.path}
+                  addToast={addToast}
+                  Component={Component}
+                  key={route.path}
+                ></ProtectedRoute>
+              );
+            }
             return (
               <Route
                 key={route.path} //url이 각각 다르기 때문

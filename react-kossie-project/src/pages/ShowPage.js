@@ -3,11 +3,13 @@ import { useParams } from "react-router";
 import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useSelector } from "react-redux";
 const ShowPage = () => {
   const { id } = useParams(); //url에있는 id부분을 가져와서 사용가능
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   console.log(id);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const getPost = (id) => {
     axios.get(`http://localhost:3001/posts/${id}`).then((res) => {
@@ -31,11 +33,13 @@ const ShowPage = () => {
     <div>
       <div className="d-flex">
         <h1 className="flex-grow-1">{post.title}</h1>{" "}
-        <div>
-          <Link className="btn btn-primary" to={`/blogs/${id}/edit`}>
-            Edit
-          </Link>
-        </div>
+        {isLoggedIn && (
+          <div>
+            <Link className="btn btn-primary" to={`/blogs/${id}/edit`}>
+              Edit
+            </Link>
+          </div>
+        )}
       </div>
 
       <small className="text-muted">
