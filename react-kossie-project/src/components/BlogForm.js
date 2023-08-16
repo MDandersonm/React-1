@@ -10,9 +10,10 @@ import propTypes from "prop-types";
 // import { v4 as uuidv4 } from "uuid";
 // import Toast from "./Toast"; // app.js에서 사용하면서 제거
 import { deleteToast } from "../helper";
+import LoadingSpinner from "./LoadingSpinner";
 // import useToast from "../hooks/toast"; // app.js에서 사용하면서 제거
 
-const BlogForm = ({ editing,addToast }) => {
+const BlogForm = ({ editing, addToast }) => {
   // const [toasts, addToast, deleteToast] = useToast(); //custom hook 사용// app.js에서 사용하면서 제거
   const [title, setTitle] = useState("");
   const [originalTitle, setOriginalTitle] = useState("");
@@ -22,7 +23,8 @@ const BlogForm = ({ editing,addToast }) => {
   const [originalPublish, setOriginalPublish] = useState(false);
   const [titleError, setTitleError] = useState(false);
   const [bodyError, setBodyError] = useState(false);
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   // const [toasts, setToasts] = useState([]); //toast useRef를 쓰면서 주석처리
   // const toasts = useRef([]); //useRef
   // const [, setToastRerender] = useState(false); //useRef가 리랜더링이 안되니 이걸로 리랜더링
@@ -34,15 +36,25 @@ const BlogForm = ({ editing,addToast }) => {
   useEffect(() => {
     if (editing) {
       console.log("useEffect");
-      axios.get(`http://localhost:3001/posts/${id}`).then((res) => {
-        console.log(res);
-        setTitle(res.data.title);
-        setOriginalTitle(res.data.title);
-        setBody(res.data.body);
-        setOriginalBody(res.data.body);
-        setPublish(res.data.publish);
-        setOriginalPublish(res.data.publish);
-      });
+      axios
+        .get(`http://localhost:3001/posts/${id}`)
+        .then((res) => {
+          console.log(res);
+          setTitle(res.data.title);
+          setOriginalTitle(res.data.title);
+          setBody(res.data.body);
+          setOriginalBody(res.data.body);
+          setPublish(res.data.publish);
+          setOriginalPublish(res.data.publish);
+          setLoading(false);
+        })
+        .catch((e) => {
+          setError("Something went wrong in db");
+          addToast({ type: "danger", text: "Something went wrong in db" });
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
     }
   }, [id, editing]);
 
@@ -66,6 +78,12 @@ const BlogForm = ({ editing,addToast }) => {
     console.log(e.target.checked);
     setPublish(e.target.checked);
   };
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   const validateForm = () => {
     let validated = true;
@@ -127,6 +145,9 @@ const BlogForm = ({ editing,addToast }) => {
         .then((res) => {
           console.log(res);
           history.push(`/blogs/${id}`);
+        })
+        .catch((e) => {
+          addToast({ type: "danger", text: "We could not update blog" });
         });
     } else {
       console.log(title, body);
@@ -144,6 +165,9 @@ const BlogForm = ({ editing,addToast }) => {
             text: "Successfully created!",
           });
           history.push("/admin");
+        })
+        .catch((e) => {
+          addToast({ type: "danger", text: "We could not create blog" });
         });
     }
   };

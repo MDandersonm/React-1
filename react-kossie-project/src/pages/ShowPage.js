@@ -4,19 +4,32 @@ import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector } from "react-redux";
+import useToast from "../hooks/toast";
 const ShowPage = () => {
   const { id } = useParams(); //url에있는 id부분을 가져와서 사용가능
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   console.log(id);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const { addToast } = useToast();
+  const [error, setError] = useState("");
 
   const getPost = (id) => {
-    axios.get(`http://localhost:3001/posts/${id}`).then((res) => {
-      console.log(res);
-      setPost(res.data);
-      setLoading(false);
-    });
+    axios
+      .get(`http://localhost:3001/posts/${id}`)
+      .then((res) => {
+        console.log(res);
+        setPost(res.data);
+        setLoading(false);
+      })
+      .catch((e) => {
+        setError("something went wroing in db");
+        addToast({
+          type: "danger",
+          text: "something went wroing in db",
+        });
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -28,6 +41,9 @@ const ShowPage = () => {
   };
   if (loading) {
     return <LoadingSpinner />;
+  }
+  if (error) {
+    return <div>{error}</div>;
   }
   return (
     <div>

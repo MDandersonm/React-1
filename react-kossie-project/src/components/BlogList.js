@@ -20,6 +20,7 @@ const BlogList = ({ isAdmin }) => {
   const toasts = useRef([]); //useRef
   const [, setToastRerender] = useState(false); //useRef가 리랜더링이 안되니 이걸로 리랜더링
 
+  const [error, setError] = useState("");
   const limit = 2;
   const history = useHistory();
   const location = useLocation();
@@ -65,6 +66,14 @@ const BlogList = ({ isAdmin }) => {
           console.log("받아온 글 리스트들 res.data!", res.data);
           setPosts(res.data);
           setLoading(false);
+        })
+        .catch((e) => {
+          setLoading(false);
+          setError("Something went wrong in database");
+          addToast({
+            text: "Something went wrong",
+            type: "danger",
+          });
         });
     },
     [isAdmin, searchText]
@@ -136,15 +145,20 @@ const BlogList = ({ isAdmin }) => {
   const deleteBlog = (e, id) => {
     e.stopPropagation(); //부모컴퍼넌트의 이벤트발생을 막아줌
     console.log("delete");
-    axios.delete(`http://localhost:3001/posts/${id}`).then(() => {
-      //   setPosts((prevPosts) => {
-      //     return prevPosts.filter((post) => {
-      //       return post.id !== id;
-      //     });
-      //   });
-      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id)); //중괄호 생략 버전
-      addToast({ text: "Successfully deleted", type: "success" });
-    });
+    axios
+      .delete(`http://localhost:3001/posts/${id}`)
+      .then(() => {
+        //   setPosts((prevPosts) => {
+        //     return prevPosts.filter((post) => {
+        //       return post.id !== id;
+        //     });
+        //   });
+        setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id)); //중괄호 생략 버전
+        addToast({ text: "Successfully deleted", type: "success" });
+      })
+      .catch((e) => {
+        addToast({ text: "the blog could not be deleted", type: "danger" });
+      });
   };
   //   useEffect(() => {
   //     //렌더링될떄 실행
@@ -201,6 +215,9 @@ const BlogList = ({ isAdmin }) => {
       getPosts(1);
     }
   };
+  if (error) {
+    return <div>{error}</div>;
+  }
   return (
     <div>
       <Toast toasts={toasts.current} deleteToast={deleteToast} />
