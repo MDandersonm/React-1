@@ -21,7 +21,7 @@ const BlogList = ({ isAdmin }) => {
   const [, setToastRerender] = useState(false); //useRef가 리랜더링이 안되니 이걸로 리랜더링
 
   const [error, setError] = useState("");
-  const limit = 2;
+  const limit = 4;//한페이지 당 뜨는 글 개수 
   const history = useHistory();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
